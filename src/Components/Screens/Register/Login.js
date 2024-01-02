@@ -44,7 +44,7 @@ const Login = () => {
         </TouchableOpacity>
         <View style={styles.Line1}>
           <SvgFromXml xml={Icons.Line1} style={styles.XmlIcon} />
-          <Text style={{marginHorizontal: 15}}>OR</Text>
+          <Text style={{marginHorizontal: 15, color: theme.colors.Grey}}>OR</Text>
           <SvgFromXml xml={Icons.Line1} style={styles.XmlIcon} />
         </View>
         <KeyboardAvoidingView>

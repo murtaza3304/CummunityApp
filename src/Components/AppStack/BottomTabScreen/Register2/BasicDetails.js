@@ -16,9 +16,25 @@ import Icons from '../../../../Assets/Icons';
 import InputField from '../../../CustomComponent/InputField';
 import theme from '../../../../Assets/Themes/theme';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import DateTimePicker from 'react-native-modal-datetime-picker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const BasicDetails = () => {
   const navigation = useNavigation();
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    console.warn("A date has been picked: ", date);
+    hideDatePicker();
+  }
 
   const BackBtn = () => {
     navigation.navigate('UserScreen3');
@@ -56,7 +72,8 @@ const BasicDetails = () => {
   };
 
   const [Gender, SelectGender] = useState({male: true, female: false});
-  const countries = ['Egypt', 'Canada', 'Australia', 'Ireland'];
+  const SubCast = ['Gujjar', 'Rana', 'Araye', 'Butt'];
+  const GenderSelection = ['Male', 'Female', 'Other']
   return (
     <View style={styles.Container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -103,12 +120,13 @@ const BasicDetails = () => {
           </View>
         </View>
         <View>
+          
            <View>
         <Text style={[styles.label, {marginTop: 10}]}>Select Country</Text>
         <SelectDropdown
-          defaultButtonText="Select Country"
+          defaultButtonText="Select Cast"
           dropdownIconPosition='right'
-          data={countries}
+          data={SubCast}
           buttonTextStyle={styles.dropdown1BtnTxtStyle}
           buttonStyle={styles.BtnStyle}
           onSelect={(selectedItem, index) => {
@@ -129,6 +147,7 @@ const BasicDetails = () => {
           dropdownStyle={styles.DropDown}
         />
       </View>
+      
           <InputField
             label="Surname"
             placeholder="Type here"
@@ -181,7 +200,7 @@ const BasicDetails = () => {
               placeholderTextColor="grey"
               keyboardType="numeric"
               xml={
-                <TouchableOpacity>
+                <TouchableOpacity onPress={showDatePicker}>
                   <SvgFromXml xml={Icons.CalenderIcon} />
                 </TouchableOpacity>
               }
@@ -196,26 +215,32 @@ const BasicDetails = () => {
               onFocus={() => setIsDoBFocused(true)}
               onBlur={() => setIsDoBFocused(false)}
             />
-            <InputField
-              label="Marital Status"
-              placeholder="Select"
-              placeholderTextColor="grey"
-              xml={
-                <TouchableOpacity>
-                  <SvgFromXml xml={Icons.DropDown} />
-                </TouchableOpacity>
-              }
-              InputStyle={[
-                styles.InputStyle,
-                {
-                  borderColor: isMaritalFocused
-                    ? theme.colors.BtnBgLight
-                    : theme.colors.BorderInactiveColor,
-                },
-              ]}
-              onFocus={() => setIsMaritalFocused(true)}
-              onBlur={() => setIsMaritalFocused(false)}
-            />
+                  <View>
+        <Text style={[styles.label, {marginTop: 10}]}>Select Country</Text>
+        <SelectDropdown
+          defaultButtonText="Marital Status"
+          dropdownIconPosition='right'
+          data={GenderSelection}
+          buttonTextStyle={styles.dropdown1BtnTxtStyle}
+          buttonStyle={styles.BtnStyle}
+          onSelect={(selectedItem, index) => {
+            console.log(selectedItem, index);
+          }}
+          
+          searchInputTxtStyle={styles.textinputtextstyles}
+          renderDropdownIcon={(isOpened) => {
+            return (
+              <SvgFromXml
+                xml={Icons.DropDown}
+                name={isOpened ? 'chevron-up' : 'chevron-down'}
+                color={'#444'}
+                size={18}
+              />
+            );
+          }}
+          dropdownStyle={styles.DropDown}
+        />
+      </View>
           </View>
           <View style={{marginTop: 12}}>
             <Button title="Next" onPress={() => Next()} />
@@ -229,11 +254,18 @@ const BasicDetails = () => {
             </Text>
           </TouchableOpacity>
         </View>
+        <View>
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
+    </View>
       </ScrollView>
     </View>
   );
 };
-
 export default BasicDetails;
 
 const styles = StyleSheet.create({
@@ -251,7 +283,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   Heading: {
     fontSize: 22,
     fontFamily: theme.fonts.PoppinsSemiBold,
@@ -278,7 +309,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
   line: {
@@ -290,8 +320,8 @@ const styles = StyleSheet.create({
     width: '47%',
   },
   label: {
-    // marginBottom: 5,
     color: theme.colors.ParagraphColor,
+    fontSize: 12
   },
   input: {
     borderWidth: 1,
@@ -324,7 +354,7 @@ const styles = StyleSheet.create({
   dropdown1BtnTxtStyle: {
     color: theme.colors.Grey,
     fontSize: 15,
-    // backgroundColor: 'red',
+    fontFamily: theme.fonts.PlusJakartaSans,
     height: 20,
     flexDirection: 'row',
     textAlign: 'left',
@@ -333,10 +363,12 @@ const styles = StyleSheet.create({
 BtnStyle: {
   width: '100%',
   borderRadius: 10,
-  // backgroundColor:'lightblue',
-  marginTop: 12,
+  marginTop: 3,
   borderWidth: 1,
   borderColor: theme.colors.BorderInactiveColor,
 },
+DropDown: {
+  borderRadius: 12, 
+}
 
 });

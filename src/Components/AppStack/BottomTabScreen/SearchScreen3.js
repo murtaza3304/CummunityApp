@@ -43,37 +43,37 @@ const SearchScreen3 = () => {
   const Location = [
     {
       id: '1',
-      ImageSource: require('../../../Assets/images/image1.jpg'),
+      ImageSource: require('../../../Assets/images/UserProfile.png'),
       Heading: 'Raaj Industry',
       Location: 'raajkot Gujrat',
     },
     {
       id: '2',
-      ImageSource: require('../../../Assets/images/image1.jpg'),
+      ImageSource: require('../../../Assets/images/UserProfile.png'),
       Heading: 'Raaj Industry',
       Location: 'raajkot Gujrat',
     },
     {
       id: '3',
-      ImageSource: require('../../../Assets/images/image1.jpg'),
+      ImageSource: require('../../../Assets/images/UserProfile.png'),
       Heading: 'Raaj Industry',
       Location: 'raajkot Gujrat',
     },
     {
       id: '4',
-      ImageSource: require('../../../Assets/images/image1.jpg'),
+      ImageSource: require('../../../Assets/images/UserProfile.png'),
       Heading: 'Raaj Industry',
       Location: 'raajkot Gujrat',
     },
     {
       id: '5',
-      ImageSource: require('../../../Assets/images/image1.jpg'),
+      ImageSource: require('../../../Assets/images/UserProfile.png'),
       Heading: 'Raaj Industry',
       Location: 'raajkot Gujrat',
     },
     {
       id: '6',
-      ImageSource: require('../../../Assets/images/image1.jpg'),
+      ImageSource: require('../../../Assets/images/UserProfile.png'),
       Heading: 'Raaj Industry',
       Location: 'raajkot Gujrat',
     },
