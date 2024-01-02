@@ -65,7 +65,7 @@ const Login = () => {
             label="Password"
             xml={
             <TouchableOpacity onPress={toggleEyeButton}>
-            <SvgFromXml xml={Icons.HideEyeIcon}/>
+            <SvgFromXml xml={toggleEyeButtonVisible ? Icons.HideEyeIcon:Icons.EyeForHide}/>
             </TouchableOpacity>}
             InputStyle={[
               styles.InputStyle,
@@ -81,14 +81,10 @@ const Login = () => {
             <TouchableOpacity
               style={[
                 styles.CheckBox,
-                {
-                  backgroundColor: isChecked
-                    ? '#1C18F2'
-                    : theme.colors.BackgroundUnselected,
-                },
+               
               ]}
               onPress={toggleCheckBox}
-            />
+            >{isChecked ? <SvgFromXml xml={Icons.InboxTickIcon} /> : null}</TouchableOpacity>
           </View>
           <View
             style={{
@@ -187,6 +183,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   CheckBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
     width: 17,
     height: 17,
     backgroundColor: theme.colors.BackgroundUnselected,

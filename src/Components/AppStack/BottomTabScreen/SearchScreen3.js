@@ -8,7 +8,7 @@ import {
   FlatList,
   
 } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import theme from '../../../Assets/Themes/theme';
 import {SvgFromXml} from 'react-native-svg';
@@ -17,6 +17,8 @@ import CustomButton from './CustomButtom';
 import CustomSearchHistory from './CustomSearchHistory';
 
 const SearchScreen3 = () => {
+  const [activeCategory, setActiveCategory] = useState('');
+  
   const data = [
     {id: '1', title: 'Location'},
     {id: '2', title: 'Business'},
@@ -26,9 +28,18 @@ const SearchScreen3 = () => {
   const renderItem = ({item}) => (
     <CustomButton
       title={item.title}
-      onPress={() => handleButtonPress(item.id)}
+      onPress={() => handleCatagory(item.title)}
+      isActive={item.title === activeCategory}
     />
   );
+  const handleCatagory = category => {
+    setActiveCategory(category);
+  };
+  useEffect(() => {
+    if (data.length > 0) {
+      setActiveCategory(data[0].title);
+    }
+  }, []);
   const Location = [
     {
       id: '1',
@@ -97,6 +108,7 @@ const SearchScreen3 = () => {
             <TextInput
               placeholder="Find people, Business, etc"
               style={styles.PlaceHolder}
+              placeholderTextColor='grey'
             />
           </TouchableOpacity>
         </View>

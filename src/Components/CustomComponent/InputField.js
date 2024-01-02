@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import theme from '../../Assets/Themes/theme';
 
-const InputField = ({label, placeholder, xml, InputStyle, onFocus, onBlur, secureTextEntry, keyboardType}) => {
+const InputField = ({label, placeholder, xml, InputStyle, onFocus, onBlur, secureTextEntry, keyboardType, placeholderTextColor}) => {
   return (
     <View style={styles.container}>
       <View style={styles.labelContainer}>
@@ -16,6 +16,7 @@ const InputField = ({label, placeholder, xml, InputStyle, onFocus, onBlur, secur
       </View>
       <View style={[styles.inputContainer, InputStyle]}>
         <TextInput
+        placeholderTextColor={placeholderTextColor}
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
           label={label}

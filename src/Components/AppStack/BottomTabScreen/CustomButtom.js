@@ -29,4 +29,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: theme.colors.ParagraphColor,
   },
+  text: {
+    fontFamily: theme.fonts.PoppinsBold,
+    fontSize: 13
+
+  }
 });

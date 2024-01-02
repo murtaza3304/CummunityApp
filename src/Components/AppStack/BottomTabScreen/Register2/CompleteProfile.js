@@ -51,16 +51,17 @@ const CompleteProfile = () => {
         <InputField
           label="Identity Prof"
           placeholder="upload here"
+          placeholderTextColor='grey'
           xml={
             <TouchableOpacity>
               <SvgFromXml xml={Icons.UploadProfilePic} />
             </TouchableOpacity>
           }
         />
-        <InputField keyboardType='numeric' label="Phone Number" placeholder="032764762764" />
+        <InputField placeholderTextColor='grey' keyboardType='numeric' label="Phone Number" placeholder="032764762764" />
       </View>
       <View style={{marginTop: 60}}>
-        <Button title="Next" onPress={Next} />
+        <Button title="Next" onPress={Next}/>
       </View>
     </View>
   );

@@ -1,34 +1,30 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import React, {useRef, useState} from 'react';
-import BackArrowBtn from '../../CustomComponent/BackArrowBtn';
-import theme from '../../../Assets/Themes/theme';
-import Button from '../../CustomComponent/Button';
-import OTPTextView from 'react-native-otp-textinput';
+import React, { useRef, useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import OTPTextView from 'react-native-otp-textinput';
+import BackArrowBtn from '../../CustomComponent/BackArrowBtn';
+import Button from '../../CustomComponent/Button';
+import theme from '../../../Assets/Themes/theme';
 
-const PhoneAuthantication = () => {
-  const navigation= useNavigation()
+const PhoneAuthantication = ({navigation}) => {
+  
+  const [otpError, setOtpError] = useState('');
+
   const handleLogin = () => {
-    navigation.navigate('EmailAuthantication')
+    navigation.navigate('EmailAuthantication');
     setOtpError('');
   };
 
   const BackButton = () => {
-    navigation.navigate('Register')
-  }
+    navigation.navigate('Register');
+  };
 
   let otpInput = useRef(null);
-  const [correctOtp, SetCorrectOpt] = useState('');
-  const [otpError, setOtpError] = useState('');
-
-  const verifyOTP = () => {};
-
-
 
   return (
     <View style={styles.Container}>
       <View>
-        <BackArrowBtn onPressBtn={BackButton}/>
+        <BackArrowBtn onPressBtn={BackButton} />
       </View>
       <View style={styles.TextContainer}>
         <Text style={styles.Heading}>Verify Phone Number</Text>
@@ -38,83 +34,59 @@ const PhoneAuthantication = () => {
         <Text style={styles.Paragraph}>039476397874 through SMS</Text>
       </View>
 
-      <View>
-        {/* OPT Start */}
-        <View style={styles.OTPInput}>
-          {otpError && (
-            <Text
-              style={[styles.Paragraph, {marginVertical: 10, color: 'red'}]}>
-              {otpError}
-            </Text>
-          )}
-          <View style={{width: '90%'}}>
-            <OTPTextView
-              textInputStyle={{
-                color: otpError ? theme.colors.Red : theme.colors.Black,
-              }}
-              ref={otpInput}
-              tintColor={otpError ? theme.colors.Red : theme.colors.Black}
-              offTintColor={otpError ? theme.colors.Red : theme.colors.Black}
-            />
-          </View>
+      <View style={styles.OTPInput}>
+        {otpError && (
+          <Text style={[styles.Paragraph, { marginVertical: 10, color: 'red' }]}>
+            {otpError}
+          </Text>
+        )}
+        <View style={{ width: '90%' }}>
+          <OTPTextView
+            textInputStyle={{
+              color: otpError ? theme.colors.Red : theme.colors.Black,
+            }}
+            ref={otpInput}
+            tintColor={otpError ? theme.colors.Red : theme.colors.Black}
+            offTintColor={otpError ? theme.colors.Red : theme.colors.Black}
+          />
         </View>
-        {/* OPT End */}
+      </View>
 
-        <View style={styles.BottomBtn}>
-          <Text style={{color: theme.colors.ParagraphColor}}>
-            Didn't Recieve a Code?
-          </Text>
-          <TouchableOpacity
-            style={{backgroundColor: 'white'}}
-            onPress={() => handleLogin()}>
-            <Text style={styles.ResendSMS}>Resend SMS</Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              fontSize: 14,
-              fontFamily: theme.fonts.PoppinsSemiBold,
-              marginVertical: 4,
-              color: theme.colors.Black,
-            }}>
-            Wronge Number
-          </Text>
-        </View>
+      <View style={styles.BottomBtn}>
+        <Text style={{ color: theme.colors.ParagraphColor }}>
+          Didn't Receive a Code?
+        </Text>
+        <TouchableOpacity style={{ backgroundColor: 'white' }} onPress={handleLogin}>
+          <Text style={styles.ResendSMS}>Resend SMS</Text>
+        </TouchableOpacity>
       </View>
-      {/* CustomBtn */}
-      <View style={{marginTop: 20}}>
-        <Button title="Verify Number" TextStyle={{fontFamily: theme.fonts.PoppinsSemiBold}} onPress={() => handleLogin()} />
+
+      <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', }}>
+        <Text style={{ fontSize: 14, fontFamily: theme.fonts.PoppinsSemiBold, marginVertical: 4, color: theme.colors.Black }}>
+          Wrong Number
+        </Text>
       </View>
+
+      <View style={{ marginTop: 20 }}>
+        <Button title="Verify Number" TextStyle={{ fontFamily: theme.fonts.PoppinsSemiBold }} onPress={()=>navigation.navigate('EmailAuthantication')} />
+      </View>
+
       <View style={styles.MainView}>
         <View>
           <Text style={styles.TextStyle}>
-            By Continuing you're indicating that you accept{' '}
+            By Continuing you're indicating that you accept
           </Text>
         </View>
-        <View style={{flexDirection: 'row', marginTop: 2}}>
+        <View style={{ flexDirection: 'row', marginTop: 2 }}>
           <Text style={styles.TextStyle}>Our</Text>
           <TouchableOpacity>
-            <Text
-              style={[
-                styles.TextStyle,
-                {textDecorationLine: 'underline', marginHorizontal: 2},
-              ]}>
+            <Text style={[styles.TextStyle, { textDecorationLine: 'underline', marginHorizontal: 2 }]}>
               Terms of Use
             </Text>
           </TouchableOpacity>
           <Text style={styles.TextStyle}>and our</Text>
           <TouchableOpacity>
-            <Text
-              style={[
-                styles.TextStyle,
-                {textDecorationLine: 'underline', marginLeft: 2},
-              ]}>
+            <Text style={[styles.TextStyle, { textDecorationLine: 'underline', marginLeft: 2 }]}>
               Privacy Policy
             </Text>
           </TouchableOpacity>
@@ -123,8 +95,6 @@ const PhoneAuthantication = () => {
     </View>
   );
 };
-
-export default PhoneAuthantication;
 
 const styles = StyleSheet.create({
   Container: {
@@ -178,3 +148,5 @@ const styles = StyleSheet.create({
     color: theme.colors.Black,
   },
 });
+
+export default PhoneAuthantication;

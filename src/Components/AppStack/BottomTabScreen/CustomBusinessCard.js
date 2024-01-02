@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 4,
+    color: theme.colors.Grey
   },
   svgContainer: {
     flexDirection: 'row',

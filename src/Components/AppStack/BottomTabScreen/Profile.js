@@ -95,7 +95,7 @@ const Profile = () => {
               justifyContent: 'space-between',
               width: '100%',
             }}>
-            <Text>Basic Details</Text>
+            <Text style={{color: theme.colors.Grey}}>Basic Details</Text>
             <View style={styles.Score}>
               <View
                 style={[
@@ -112,7 +112,7 @@ const Profile = () => {
               width: '100%',
               marginTop: 3,
             }}>
-            <Text>Grand Parents</Text>
+            <Text style={{color: theme.colors.Grey}}>Grand Parents</Text>
             <View style={styles.Score}>
               <View style={styles.innerScore2}></View>
             </View>
@@ -125,7 +125,7 @@ const Profile = () => {
               width: '100%',
               marginTop: 3,
             }}>
-            <Text>Closest Family</Text>
+            <Text style={{color: theme.colors.Grey}}>Closest Family</Text>
             <View style={styles.Score}>
               <View style={styles.innerScore2}></View>
             </View>
@@ -138,7 +138,7 @@ const Profile = () => {
               width: '100%',
               marginTop: 3,
             }}>
-            <Text>In-Laws</Text>
+            <Text style={{color: theme.colors.Grey}}>In-Laws</Text>
             <View style={styles.Score}>
               <View style={styles.innerScore2}></View>
             </View>
@@ -246,7 +246,7 @@ const Profile = () => {
             <View style={{marginVertical: 10}}>
               <Button
                 title="Add Business"
-                TextStyle={{paddingHorizontal: 40, height: 20}}
+                TextStyle={{paddingHorizontal: 40, height: 30}}
               />
             </View>
           </View>
@@ -279,7 +279,7 @@ const Profile = () => {
             <View style={{marginVertical: 10}}>
               <Button
                 title="Add Education"
-                TextStyle={{paddingHorizontal: 40, height: 20}}
+                TextStyle={{paddingHorizontal: 40, height: 30}}
               />
             </View>
           </View>
@@ -312,14 +312,14 @@ const Profile = () => {
             <View style={{marginVertical: 10}}>
               <Button
                 title="Add Occupation"
-                TextStyle={{paddingHorizontal: 40, height: 20}}
+                TextStyle={{paddingHorizontal: 40, height: 31}}
               />
             </View>
           </View>
         </View>
         {/* End */}
         <View style={{marginBottom: 20}}>
-          <Button title="Back To Home" onPress={BackToHome}/>
+          <Button title="Back To Home" onPress={BackToHome} TextStyle={{fontFamily: theme.fonts.PoppinsRegular}}/>
         </View>
       </ScrollView>
     </View>
@@ -475,7 +475,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
-  TextContainer: {},
   firstText: {
     color: theme.colors.Grey,
     fontSize: 10,

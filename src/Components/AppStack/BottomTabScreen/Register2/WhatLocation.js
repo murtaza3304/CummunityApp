@@ -30,7 +30,7 @@ const WhatLocation = () => {
       </View>
       
       <TouchableOpacity style={{marginTop: 15, alignItems: 'center', justifyContent:'center'}} onPress={BackBtn}>
-        <Text style={[styles.Paragraph, {color: theme.colors.BtnBgLight, width:130}]}>Enter Location Manutally</Text>
+        <Text style={[styles.Paragraph, {color: theme.colors.BtnBgLight, width:145}]}>Enter Location Manutally</Text>
       </TouchableOpacity>
       </View>
      

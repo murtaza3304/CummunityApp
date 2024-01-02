@@ -17,9 +17,7 @@ import {useNavigation} from '@react-navigation/native';
 const Register = () => {
   const navigation = useNavigation();
 
-  const GetStart = () => {
-    navigation.navigate('PhoneAuthantication');
-  };
+
 
   const [isChecked, setIsChecked] = useState(false);
   const [activeButton, setActiveButton] = useState(1);
@@ -28,10 +26,18 @@ const Register = () => {
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [isConfirmPasswordFocused, setIsConfirmPasswordFocused] =
     useState(false);
+    const GetStart = () => {
+      navigation.navigate('PhoneAuthantication');
+   setTimeout(()=>{setActiveButton(1)},1000) 
 
+    };
   const handleButtonPress = buttonIndex => {
-    navigation.navigate('Login');
     setActiveButton(buttonIndex);
+    navigation.navigate('Login');
+    setTimeout(()=>{
+      setActiveButton(1)
+    },2000)
+
   };
 
   const toggleCheckBox = () => {
@@ -39,18 +45,15 @@ const Register = () => {
   };
   // Password Icon Functions
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
-  const [isConfirmPasswordVisible, isSetConfirmPasswordVisible] = useState(true);
-  
+  const [isConfirmPasswordVisible, isSetConfirmPasswordVisible] =
+    useState(true);
 
   const ToggleHidePassword = () => {
     setIsPasswordVisible(!isPasswordVisible);
-  }
+  };
   const ToggleHidePasswordConfirm = () => {
-    isSetConfirmPasswordVisible(!isConfirmPasswordVisible)
-  }
-
-
-
+    isSetConfirmPasswordVisible(!isConfirmPasswordVisible);
+  };
 
   return (
     <View style={styles.Container} behavior="padding" enabled>
@@ -60,15 +63,23 @@ const Register = () => {
           <Text style={styles.Paragraph}>
             Sign Up now to get started with an Account.
           </Text>
-          <View style={{flexDirection: 'row', backgroundColor: theme.colors.BackgroundUnselected, height: 46, padding: 2, marginTop: 10, borderRadius: 10}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              backgroundColor: theme.colors.BackgroundUnselected,
+              height: 46,
+              padding: 2,
+              marginTop: 10,
+              borderRadius: 16,
+            }}>
             <TouchableOpacity
               style={[
                 styles.BtnOpacity,
                 activeButton === 1
-                  ? {backgroundColor: '#1C18F2'}
+                  ? {backgroundColor: theme.colors.BtnBgLight}
                   : {backgroundColor: '#D9D9D9'},
               ]}
-              onPress={() => handleButtonPress(1)}>
+              onPress={() => handleButtonRegister(1)}>
               <Text
                 style={[
                   styles.btnText,
@@ -83,7 +94,7 @@ const Register = () => {
               style={[
                 styles.BtnOpacity,
                 activeButton === 2
-                  ? {backgroundColor: '#1C18F2'}
+                  ? {backgroundColor: theme.colors.BtnBgLight}
                   : {backgroundColor: '#D9D9D9'},
               ]}
               onPress={() => handleButtonPress(2)}>
@@ -100,7 +111,9 @@ const Register = () => {
           </View>
           <View style={styles.Line1}>
             <SvgFromXml xml={Icons.Line1} style={styles.XmlIcon} />
-            <Text style={{marginHorizontal: 10, color: theme.colors.Grey}}>OR</Text>
+            <Text style={{marginHorizontal: 10, color: theme.colors.Grey}}>
+              OR
+            </Text>
             <SvgFromXml xml={Icons.Line1} style={styles.XmlIcon} />
           </View>
         </View>
@@ -132,10 +145,11 @@ const Register = () => {
             label="Password"
             xml={
               <TouchableOpacity onPress={ToggleHidePassword}>
-                <SvgFromXml  xml={isPasswordVisible?Icons.HideEyeIcon:Icons.EyeForHide} /> 
+                <SvgFromXml
+                  xml={isPasswordVisible ? Icons.HideEyeIcon : Icons.EyeForHide}
+                />
               </TouchableOpacity>
             }
-
             InputStyle={[
               styles.InputStyle,
               {borderColor: isPasswordFocused ? '#1676F3' : '#ccc'},
@@ -150,7 +164,13 @@ const Register = () => {
             label="Confirm Password"
             xml={
               <TouchableOpacity onPress={ToggleHidePasswordConfirm}>
-                <SvgFromXml  xml={isConfirmPasswordVisible?Icons.HideEyeIcon:Icons.EyeForHide} />
+                <SvgFromXml
+                  xml={
+                    isConfirmPasswordVisible
+                      ? Icons.HideEyeIcon
+                      : Icons.EyeForHide
+                  }
+                />
               </TouchableOpacity>
             }
             InputStyle={[
@@ -163,12 +183,9 @@ const Register = () => {
         </View>
         <View style={styles.CheckBoxContainer}>
           <View>
-          <TouchableOpacity
-      style={styles.CheckBox}
-      onPress={toggleCheckBox}
-    >
-      {isChecked ? <SvgFromXml xml={Icons.InboxTickIcon} /> : null}
-    </TouchableOpacity>
+            <TouchableOpacity style={styles.CheckBox} onPress={toggleCheckBox}>
+              {isChecked ? <SvgFromXml xml={Icons.InboxTickIcon} /> : null}
+            </TouchableOpacity>
           </View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text style={styles.Paragraph}>I have Read and Agreed to the</Text>
@@ -185,15 +202,14 @@ const Register = () => {
           />
         </View>
         <View style={styles.BottomBtn}>
-        <Text style={{color: theme.colors.ParagraphColor}}>
-          already have an account
-        </Text>
-        <TouchableOpacity onPress={() => handleButtonPress()}>
-          <Text style={styles.LogIn}>Log in</Text>
-        </TouchableOpacity>
-      </View>
+          <Text style={{color: theme.colors.ParagraphColor}}>
+            already have an account
+          </Text>
+          <TouchableOpacity onPress={() => handleButtonPress()}>
+            <Text style={styles.LogIn}>Log in</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
-     
     </View>
   );
 };
@@ -215,7 +231,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: theme.colors.Black,
     fontFamily: theme.fonts.PlusJakartaSans,
-    
   },
   Paragraph: {
     color: theme.colors.ParagraphColor,
@@ -272,11 +287,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 5,
     alignItems: 'center',
-    justifyContent:'center'
+    justifyContent: 'center',
   },
   BottomBtn: {
- marginTop: 10,
- marginBottom: 25,
+    marginTop: 10,
+    marginBottom: 25,
     width: '100%',
     alignItems: 'center',
     flexDirection: 'row',

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   SearchHistoryContainer: {
     width: '100%',
     marginBottom: 10,
-    borderRadius: 12,
+    borderRadius: 10,
   },
   Paragraph: {
     color: theme.colors.ParagraphColor,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   Image: {
     width: 42,
     height: 42,
-    borderRadius: 50,
+    borderRadius: 60,
     position: 'absolute',
     zIndex: 1, 
   },
@@ -44,11 +44,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: theme.fonts.PoppinsBold,
     color: theme.colors.Black,
-    marginLeft: 15
+    marginLeft: 23,
+    marginTop:2
   },
   TouchableOpacity: {
     flexDirection: 'row',
-    marginLeft: 15
+    marginLeft: 18
   },
   ViewBorder: {
     borderColor: theme.colors.BorderInactiveColor,
@@ -58,6 +59,6 @@ const styles = StyleSheet.create({
     marginLeft: 29,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-
+    marginBottom: 2
   }
 });

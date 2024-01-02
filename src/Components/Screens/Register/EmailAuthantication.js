@@ -4,13 +4,11 @@ import BackArrowBtn from '../../CustomComponent/BackArrowBtn';
 import theme from '../../../Assets/Themes/theme';
 import Button from '../../CustomComponent/Button';
 import OTPTextView from 'react-native-otp-textinput';
-import { useNavigation } from '@react-navigation/native';
 
-const EmailAuthantication = () => {
- const navigation = useNavigation();
+const EmailAuthantication = ({navigation}) => {
 
- const BackArrowBtn = () => {
-  navigation.navigate('Register')
+ const BackArrow = () => {
+  navigation.navigate('Login')
  }
 
 
@@ -20,7 +18,7 @@ const EmailAuthantication = () => {
 
   const verifyOTP = () => {};
 
-  const handleLogin = () => {
+  const handleLoginBtn = () => {
     navigation.navigate('Login')
     setOtpError('');
   };
@@ -28,7 +26,7 @@ const EmailAuthantication = () => {
   return (
     <View style={styles.Container}>
       <View>
-        <BackArrowBtn onPressBtn={BackArrowBtn}/>
+        <BackArrowBtn onPressBtn={BackArrow}/>
       </View>
       <View style={styles.TextContainer}>
         <Text style={styles.Heading}>Verify Email</Text>
@@ -89,7 +87,7 @@ const EmailAuthantication = () => {
       </View>
       {/* CustomBtn */}
       <View style={{marginTop: 20}}>
-        <Button title="Verify Email" TextStyle={{fontFamily: theme.fonts.PoppinsSemiBold}} onPress={() => handleLogin()} />
+        <Button title="Verify Email" TextStyle={{fontFamily: theme.fonts.PoppinsSemiBold}} onPress={() => handleLoginBtn()} />
       </View>
       <View style={styles.MainView}>
         <View>

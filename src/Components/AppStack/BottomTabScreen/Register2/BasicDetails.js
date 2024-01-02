@@ -9,12 +9,13 @@ import {
 } from 'react-native';
 import {SvgFromXml} from 'react-native-svg';
 import {useNavigation} from '@react-navigation/native';
-
+import SelectDropdown from 'react-native-select-dropdown';
 import BackArrowBtn from '../../../CustomComponent/BackArrowBtn';
 import Button from '../../../CustomComponent/Button';
 import Icons from '../../../../Assets/Icons';
 import InputField from '../../../CustomComponent/InputField';
 import theme from '../../../../Assets/Themes/theme';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const BasicDetails = () => {
   const navigation = useNavigation();
@@ -27,6 +28,7 @@ const BasicDetails = () => {
     navigation.navigate('WhatLocation');
   };
 
+  const [isVisible, setisVisible] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isSurnameFocused, setIsSurnameFocused] = useState(false);
   const [isDoBFocused, setIsDoBFocused] = useState(false);
@@ -54,7 +56,7 @@ const BasicDetails = () => {
   };
 
   const [Gender, SelectGender] = useState({male: true, female: false});
-
+  const countries = ['Egypt', 'Canada', 'Australia', 'Ireland'];
   return (
     <View style={styles.Container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -83,6 +85,7 @@ const BasicDetails = () => {
             <Text style={styles.label}>First Name</Text>
             <TextInput
               placeholder="First Name"
+              placeholderTextColor="grey"
               style={{...styles.input, borderColor: firstNameBorder}}
               onFocus={() => handleFocus('firstName')}
               onBlur={handleBlur}
@@ -92,6 +95,7 @@ const BasicDetails = () => {
             <Text style={styles.label}>Last Name</Text>
             <TextInput
               placeholder="Last Name"
+              placeholderTextColor="grey"
               style={{...styles.input, borderColor: lastNameBorder}}
               onFocus={() => handleFocus('lastName')}
               onBlur={handleBlur}
@@ -99,25 +103,36 @@ const BasicDetails = () => {
           </View>
         </View>
         <View>
-          <InputField
-            label="Your Cast"
-            placeholder="Select Sub Cast"
-            xml={<SvgFromXml xml={Icons.DropDown} />}
-            InputStyle={[
-              styles.InputStyle,
-              {
-                borderColor: isEmailFocused
-                  ? theme.colors.BtnBgLight
-                  : theme.colors.BorderInactiveColor,
-              },
-            ]}
-            onFocus={() => setIsEmailFocused(true)}
-            onBlur={() => setIsEmailFocused(false)}
-          />
-
+           <View>
+        <Text style={[styles.label, {marginTop: 10}]}>Select Country</Text>
+        <SelectDropdown
+          defaultButtonText="Select Country"
+          dropdownIconPosition='right'
+          data={countries}
+          buttonTextStyle={styles.dropdown1BtnTxtStyle}
+          buttonStyle={styles.BtnStyle}
+          onSelect={(selectedItem, index) => {
+            console.log(selectedItem, index);
+          }}
+          
+          searchInputTxtStyle={styles.textinputtextstyles}
+          renderDropdownIcon={(isOpened) => {
+            return (
+              <SvgFromXml
+                xml={Icons.DropDown}
+                name={isOpened ? 'chevron-up' : 'chevron-down'}
+                color={'#444'}
+                size={18}
+              />
+            );
+          }}
+          dropdownStyle={styles.DropDown}
+        />
+      </View>
           <InputField
             label="Surname"
             placeholder="Type here"
+            placeholderTextColor="grey"
             InputStyle={[
               styles.InputStyle,
               {
@@ -163,6 +178,7 @@ const BasicDetails = () => {
             <InputField
               label="Date of Birth"
               placeholder="Select"
+              placeholderTextColor="grey"
               keyboardType="numeric"
               xml={
                 <TouchableOpacity>
@@ -183,6 +199,7 @@ const BasicDetails = () => {
             <InputField
               label="Marital Status"
               placeholder="Select"
+              placeholderTextColor="grey"
               xml={
                 <TouchableOpacity>
                   <SvgFromXml xml={Icons.DropDown} />
@@ -273,7 +290,7 @@ const styles = StyleSheet.create({
     width: '47%',
   },
   label: {
-    marginBottom: 5,
+    // marginBottom: 5,
     color: theme.colors.ParagraphColor,
   },
   input: {
@@ -304,4 +321,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 15,
   },
+  dropdown1BtnTxtStyle: {
+    color: theme.colors.Grey,
+    fontSize: 15,
+    // backgroundColor: 'red',
+    height: 20,
+    flexDirection: 'row',
+    textAlign: 'left',
+  
+  },
+BtnStyle: {
+  width: '100%',
+  borderRadius: 10,
+  // backgroundColor:'lightblue',
+  marginTop: 12,
+  borderWidth: 1,
+  borderColor: theme.colors.BorderInactiveColor,
+},
+
 });
