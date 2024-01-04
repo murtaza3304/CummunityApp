@@ -9,9 +9,10 @@ const Screen1 = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
+    // Use a longer timeout to make sure the splash screen covers the entire screen
     setTimeout(() => {
       SplashScreen.hide();
-    }, 80); 
+    }, 2000); // Adjust the timeout duration as needed
   }, []);
 
   const Explore = () => {

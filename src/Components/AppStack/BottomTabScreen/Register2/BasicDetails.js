@@ -43,6 +43,9 @@ const BasicDetails = () => {
   const Next = () => {
     navigation.navigate('WhatLocation');
   };
+  const BottomLogIn = () =>{
+    navigation.navigate('Login')
+  }
 
   const [isVisible, setisVisible] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
@@ -248,7 +251,7 @@ const BasicDetails = () => {
         </View>
         <View style={styles.footer}>
           <Text style={styles.Paragraph}>Already have an account?</Text>
-          <TouchableOpacity style={{marginLeft: 5}} onPress={() => Login()}>
+          <TouchableOpacity style={{marginLeft: 5}} onPress={() => BottomLogIn()}>
             <Text style={[styles.Paragraph, {color: theme.colors.BtnBgLight}]}>
               Log in
             </Text>

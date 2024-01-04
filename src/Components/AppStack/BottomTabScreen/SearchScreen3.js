@@ -128,7 +128,6 @@ const SearchScreen3 = () => {
             horizontal={false}
           />
         </View>
-        {/* ScrollView */}
       </ScrollView>
     </View>
   );
