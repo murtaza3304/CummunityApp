@@ -15,8 +15,7 @@ import Button from '../../../CustomComponent/Button';
 import Icons from '../../../../Assets/Icons';
 import InputField from '../../../CustomComponent/InputField';
 import theme from '../../../../Assets/Themes/theme';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import DateTimePicker from 'react-native-modal-datetime-picker';
+
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const BasicDetails = () => {
@@ -41,17 +40,10 @@ const BasicDetails = () => {
   };
 
   const Next = () => {
-    navigation.navigate('WhatLocation');
+    navigation.navigate('EnterLocation');
   };
-  const BottomLogIn = () =>{
-    navigation.navigate('Login')
-  }
-
-  const [isVisible, setisVisible] = useState(false);
-  const [isEmailFocused, setIsEmailFocused] = useState(false);
-  const [isSurnameFocused, setIsSurnameFocused] = useState(false);
+  const [InitialName, SetInitialName] = useState(false);
   const [isDoBFocused, setIsDoBFocused] = useState(false);
-  const [isMaritalFocused, setIsMaritalFocused] = useState(false);
   const [firstNameBorder, setFirstNameBorder] = useState(
     theme.colors.BackgroundUnselected,
   );
@@ -68,12 +60,13 @@ const BasicDetails = () => {
       setFirstNameBorder(theme.colors.BackgroundUnselected);
     }
   };
-
   const handleBlur = () => {
     setFirstNameBorder(theme.colors.BackgroundUnselected);
-    setLastNameBorder(theme.colors.BackgroundUnselected);
+    setLastNameBorder(theme.colors.BackgroundUnselected); 
   };
-
+  const ToggleBackBtn = () => {
+    navigation.navigate('Register')
+  }
   const [Gender, SelectGender] = useState({male: true, female: false});
   const SubCast = ['Gujjar', 'Rana', 'Araye', 'Butt'];
   const GenderSelection = ['Male', 'Female', 'Other']
@@ -81,7 +74,7 @@ const BasicDetails = () => {
     <View style={styles.Container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <BackArrowBtn onPressBtn={BackBtn} />
+          <BackArrowBtn onPressBtn={()=>ToggleBackBtn()}/>
         </View>
         <View style={styles.HeadingContainer}>
           <Text style={styles.Heading}>Basic Details</Text>
@@ -100,11 +93,28 @@ const BasicDetails = () => {
           <View style={styles.line}></View>
           <View style={styles.circle}></View>
         </View>
+        
+        <InputField
+            label="First Name"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+            InputStyle={[
+              styles.InputStyle,
+              {
+                borderColor: InitialName
+                  ? theme.colors.BtnBgLight
+                  : theme.colors.BorderInactiveColor,
+              },
+            ]}
+            onFocus={() => SetInitialName(true)}
+            onBlur={() => SetInitialName(false)}
+          />
         <View style={styles.MainContainer}>
+        
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>First Name</Text>
+            <Text style={styles.label}>Middle Name</Text>
             <TextInput
-              placeholder="First Name"
+              placeholder="Middle Name"
               placeholderTextColor="grey"
               style={{...styles.input, borderColor: firstNameBorder}}
               onFocus={() => handleFocus('firstName')}
@@ -122,51 +132,7 @@ const BasicDetails = () => {
             />
           </View>
         </View>
-        <View>
-          
-           <View>
-        <Text style={[styles.label, {marginTop: 10}]}>Select Country</Text>
-        <SelectDropdown
-          defaultButtonText="Select Cast"
-          dropdownIconPosition='right'
-          data={SubCast}
-          buttonTextStyle={styles.dropdown1BtnTxtStyle}
-          buttonStyle={styles.BtnStyle}
-          onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
-          }}
-          
-          searchInputTxtStyle={styles.textinputtextstyles}
-          renderDropdownIcon={(isOpened) => {
-            return (
-              <SvgFromXml
-                xml={Icons.DropDown}
-                name={isOpened ? 'chevron-up' : 'chevron-down'}
-                color={'#444'}
-                size={18}
-              />
-            );
-          }}
-          dropdownStyle={styles.DropDown}
-        />
-      </View>
-      
-          <InputField
-            label="Surname"
-            placeholder="Type here"
-            placeholderTextColor="grey"
-            InputStyle={[
-              styles.InputStyle,
-              {
-                borderColor: isSurnameFocused
-                  ? theme.colors.BtnBgLight
-                  : theme.colors.BorderInactiveColor,
-              },
-            ]}
-            onFocus={() => setIsSurnameFocused(true)}
-            onBlur={() => setIsSurnameFocused(false)}
-          />
-        </View>
+        
         <View>
           <Text style={{color: theme.colors.Grey, marginVertical: 10}}>
             Gender
@@ -248,14 +214,6 @@ const BasicDetails = () => {
           <View style={{marginTop: 12}}>
             <Button title="Next" onPress={() => Next()} />
           </View>
-        </View>
-        <View style={styles.footer}>
-          <Text style={styles.Paragraph}>Already have an account?</Text>
-          <TouchableOpacity style={{marginLeft: 5}} onPress={() => BottomLogIn()}>
-            <Text style={[styles.Paragraph, {color: theme.colors.BtnBgLight}]}>
-              Log in
-            </Text>
-          </TouchableOpacity>
         </View>
         <View>
       <DateTimePickerModal

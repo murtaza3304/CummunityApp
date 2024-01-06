@@ -2,12 +2,14 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './Home';
 import Profile from './Profile';
-import Ticket from './Ticket';
-import Heart from './Heart';
 import theme from '../../../Assets/Themes/theme';
 import {SvgFromXml} from 'react-native-svg';
 import {View} from 'react-native';
 import Icons from '../../../Assets/Icons';
+import SearchScreen3 from './SearchScreen3';
+import BusinessList from './BusinessList';
+import AlertScreen from './AlertScreen';
+import NotificationScreen from './NotificationScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -69,8 +71,8 @@ function BottomTabs() {
           }}
         />
         <Tab.Screen
-          name="Ticket"
-          component={Ticket}
+          name="BusinessList"
+          component={BusinessList}
           options={{
             tabBarIcon: ({focused}) => (
               <View
@@ -88,10 +90,10 @@ function BottomTabs() {
             ),
           }}
         />
-
+        
         <Tab.Screen
-          name="Heart"
-          component={Heart}
+          name="SearchScreen3"
+          component={SearchScreen3}
           options={{
             tabBarIcon: ({focused}) => (
               <View
@@ -129,6 +131,47 @@ function BottomTabs() {
             ),
           }}
         />
+        <Tab.Screen
+          name="AlertScreen"
+          component={AlertScreen}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <View
+                style={{
+                  ...tabStyle,
+                  backgroundColor: focused
+                    ? theme.colors.ButtonBackground
+                    : theme.colors.Transparent,
+                }}>
+                <SvgFromXml
+                  xml={Icons.AlertIcon}
+                  style={{color: focused ? theme.colors.Blue  : 'transparent'}}
+                />
+              </View>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="NotificationScreen"
+          component={NotificationScreen}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <View
+                style={{
+                  ...tabStyle,
+                  backgroundColor: focused
+                    ? theme.colors.ButtonBackground
+                    : theme.colors.Transparent,
+                }}>
+                <SvgFromXml
+                  xml={Icons.NotificationIcon}
+                  style={{color: focused ? theme.colors.Blue  : 'transparent'}}
+                />
+              </View>
+            ),
+          }}
+        />
+
       </Tab.Navigator>
     </View>
   );

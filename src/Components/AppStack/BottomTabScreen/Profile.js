@@ -12,11 +12,18 @@ import {SvgFromXml} from 'react-native-svg';
 import Icons from '../../../Assets/Icons';
 import Button from '../../CustomComponent/Button';
 import { useNavigation } from '@react-navigation/native';
+import AddEducation from './AddEducation';
 
 const Profile = () => {
   const navigation = useNavigation()
-  const BackToHome = () => {
-    navigation.navigate('Home')
+  const FamilyMembers = () => {
+    navigation.navigate('FamilyMembers')
+  }
+  const AddToBusiness = () => {
+    navigation.navigate('AddToBusiness')
+  }
+  const AddEducation = () => {
+    navigation.navigate('AddEducation')
   }
   return (
     <View style={styles.MainContainer}>
@@ -45,14 +52,10 @@ const Profile = () => {
         </View>
         <View style={styles.OuterMostContainer}>
           <Text style={styles.Heading}>Mehul Bhanderi</Text>
-          <Text style={styles.Paragraph}>Male | Leava Patel | 30 years</Text>
         </View>
         <View style={styles.TopBox}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Image
-              source={require('../../../Assets/images/QRScane.png')}
-              style={styles.QrCode}
-            />
+            
             <Text style={[styles.Paragraph, {marginTop: 5}]}>QR Code</Text>
           </View>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -60,87 +63,63 @@ const Profile = () => {
               source={require('../../../Assets/images/Treeform.png')}
               style={styles.QrCode}
             />
-            <Text style={[styles.Paragraph, {marginTop: 5}]}>QR Code</Text>
+            <TouchableOpacity onPress={()=>FamilyMembers()}>
+            <Text style={[styles.Paragraph, {marginTop: 5}]}>Family Members</Text>
+            </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.OuterBox}>
-          <View style={styles.TopBox1}>
-            <View style={[styles.Score, {marginTop: 19}]}>
-              <View style={styles.innerScore}></View>
-            </View>
+        <View style={styles.Frame}>
+          <View style={styles.VerificationStatus}>
             <Text
               style={[
-                styles.Paragraph,
-                {
-                  color: theme.colors.Green,
-                  marginHorizontal: 8,
-                  fontFamily: theme.fonts.PoppinsSemiBold,
-                  fontSize: 22,
-                },
+                styles.Heading,
+                {fontSize: 14, color: theme.colors.Black},
               ]}>
-              8%
+              Basic Details
             </Text>
-            <Text
-              style={[
-                styles.Paragraph,
-                {color: theme.colors.Green, fontSize: 12, marginTop: 12},
-              ]}>
-              Complete Profile
+            <Text style={[styles.Paragraph, {color: theme.colors.Grey}]}>
+              Edit
             </Text>
           </View>
           <View
             style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
+              borderWidth: 2,
+              borderColor: theme.colors.BorderInactiveColor,
               width: '100%',
-            }}>
-            <Text style={{color: theme.colors.Grey}}>Basic Details</Text>
-            <View style={styles.Score}>
-              <View
-                style={[
-                  styles.innerScore2,
-                  {backgroundColor: theme.colors.Blue},
-                ]}></View>
-            </View>
-          </View>
+            }}></View>
           <View
             style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-              marginTop: 3,
+              height: '25%',
             }}>
-            <Text style={{color: theme.colors.Grey}}>Grand Parents</Text>
-            <View style={styles.Score}>
-              <View style={styles.innerScore2}></View>
+            <View style={styles.innerFrame}>
+              <View style={styles.TextContainer}>
+                <Text style={styles.firstText}>First Name</Text>
+                <Text style={styles.secondText}>Mehul</Text>
+              </View>
+              <View>
+                <Text style={styles.firstText}>First Name</Text>
+                <Text style={styles.secondText}>Mehul</Text>
+              </View>
             </View>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-              marginTop: 3,
-            }}>
-            <Text style={{color: theme.colors.Grey}}>Closest Family</Text>
-            <View style={styles.Score}>
-              <View style={styles.innerScore2}></View>
+            <View style={styles.innerFrame}>
+              <View style={styles.TextContainer}>
+                <Text style={styles.firstText}>First Name</Text>
+                <Text style={styles.secondText}>Mehul</Text>
+              </View>
+              <View>
+                <Text style={styles.firstText}>First Name</Text>
+                <Text style={styles.secondText}>Mehul</Text>
+              </View>
             </View>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-              marginTop: 3,
-            }}>
-            <Text style={{color: theme.colors.Grey}}>In-Laws</Text>
-            <View style={styles.Score}>
-              <View style={styles.innerScore2}></View>
+            <View style={styles.innerFrame}>
+              <View style={styles.TextContainer}>
+                <Text style={styles.firstText}>First Name</Text>
+                <Text style={styles.secondText}>Mehul</Text>
+              </View>
+              <View>
+                <Text style={styles.firstText}>First Name</Text>
+                <Text style={styles.secondText}>Mehul</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -167,53 +146,6 @@ const Profile = () => {
             </Text>
             <Text style={styles.firstText}>Current City Village</Text>
             <Text style={styles.secondText}>
-              Rajkot, Gujrat, India, 6730000
-            </Text>
-          </View>
-        </View>
-        <View style={styles.ContainerFaimilyDetail}>
-          <Image
-            source={require('../../../Assets/images/FamilyDetail.png')}
-            style={styles.FamilyDetail}
-          />
-        </View>
-
-        <View style={styles.CardContainer}>
-          <View style={{width: '30%'}}>
-            <Image
-              source={require('../../../Assets/images/BoyImage.jpg')}
-              style={styles.CardImage}
-              resizeMode="contain"
-            />
-          </View>
-          <View
-            style={[
-              styles.TextContainer,
-              {
-                height: 95,
-                width: '70%',
-                paddingHorizontal: 5,
-                marginLeft: 10,
-                justifyContent: 'center',
-              },
-            ]}>
-            <Text
-              style={[
-                styles.Heading,
-                {
-                  fontSize: 16,
-                  fontFamily: theme.fonts.PoppinsSemiBold,
-                  color: theme.colors.Grey,
-                },
-              ]}>
-              Location Details
-            </Text>
-            <Text style={styles.firstText}>Native Village</Text>
-            <Text style={[styles.secondText, {fontSize: 10}]}>
-              Latipur, Dhumol, Jamnagar, Gujrat
-            </Text>
-            <Text style={styles.firstText}>Current City Village</Text>
-            <Text style={[styles.secondText, {fontSize: 10}]}>
               Rajkot, Gujrat, India, 6730000
             </Text>
           </View>
@@ -247,6 +179,7 @@ const Profile = () => {
               <Button
                 title="Add Business"
                 TextStyle={{paddingHorizontal: 40, height: 30}}
+                onPress={()=>AddToBusiness()}
               />
             </View>
           </View>
@@ -280,46 +213,10 @@ const Profile = () => {
               <Button
                 title="Add Education"
                 TextStyle={{paddingHorizontal: 40, height: 30}}
+                onPress={()=>AddEducation()}
               />
             </View>
           </View>
-        </View>
-        {/* End */}
-        <View style={[styles.Box2, {height: 190}]}>
-          <View style={styles.InnerBox2}>
-            <Text style={[styles.Heading, {fontSize: 14}]}>Occupation</Text>
-            <Text style={[styles.Paragraph, {color: theme.colors.Blue}]}>
-              Add
-            </Text>
-          </View>
-          <View
-            style={{
-              width: '100%',
-              borderWidth: 2,
-              marginTop: 10,
-              borderColor: theme.colors.BorderInactiveColor,
-            }}></View>
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%',
-              height: '100%',
-            }}>
-            <Text style={[styles.secondText, {fontSize: 10}]}>
-              No Occupation added Found
-            </Text>
-            <View style={{marginVertical: 10}}>
-              <Button
-                title="Add Occupation"
-                TextStyle={{paddingHorizontal: 40, height: 31}}
-              />
-            </View>
-          </View>
-        </View>
-        {/* End */}
-        <View style={{marginBottom: 20}}>
-          <Button title="Back To Home" onPress={BackToHome} TextStyle={{fontFamily: theme.fonts.PoppinsRegular}}/>
         </View>
       </ScrollView>
     </View>
@@ -405,6 +302,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
   },
+  
   Heading: {
     fontSize: 22,
     fontFamily: theme.fonts.PlusJakartaSans,
@@ -513,5 +411,42 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
     flexDirection: 'row',
+  },
+  Frame: {
+    width: '100%',
+    height: 200,
+    borderColor: theme.colors.BorderInactiveColor,
+    borderWidth: 3,
+    borderRadius: 16,
+    marginVertical: 20,
+    paddingHorizontal: 20,
+  },
+  innerFrame: {
+    width: '70%',
+    paddingVertical: 10,
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  TextContainer: {},
+  firstText: {
+    color: theme.colors.Grey,
+    fontSize: 10,
+  },
+  secondText: {
+    color: theme.colors.Grey,
+    fontSize: 12,
+    fontFamily: theme.fonts.PlusJakartaSansSamiBold,
+  },
+  VerificationStatus: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+  },
+  Heading: {
+    fontSize: 22,
+    fontFamily: theme.fonts.PoppinsSemiBold,
+    color: theme.colors.Black,
+    alignItems: 'center',
   },
 });

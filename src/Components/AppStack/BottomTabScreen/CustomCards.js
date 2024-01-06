@@ -1,22 +1,40 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { SvgFromXml } from 'react-native-svg';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {SvgFromXml} from 'react-native-svg';
 import Icons from '../../../Assets/Icons';
 import theme from '../../../Assets/Themes/theme';
 
-const CustomCard = ({ title, imageSource, onpressCard }) => {
+const CustomCard = ({
+  title,
+  imageSource,
+  onpressCard,
+  ImagesProps,
+  MainCardContainer,
+  TitleInImage,
+  BottomBtn,
+  TextStyles,
+}) => {
   return (
-    <TouchableOpacity style={styles.cardContainer} onPress={onpressCard}>
-      <Image source={imageSource} style={styles.cardImage} />
+    <TouchableOpacity
+      style={[MainCardContainer, styles.cardContainer]}
+      onPress={onpressCard}>
+      <Image source={imageSource} style={[styles.cardImage, ImagesProps]} />
       <View style={styles.overlay}>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>{title}</Text>
+        <View style={[styles.button, TitleInImage]}>
+          <Text style={[styles.buttonText, TextStyles]}>{title}</Text>
         </View>
       </View>
       <View style={styles.overlay}>
-        <View style={styles.BottomButton}>
-        <SvgFromXml xml={Icons.ReviewUserIcon}/>
-          <Text style={[styles.buttonText, {color: theme.colors.White, marginLeft: 3}]}>1129</Text>
+        <View style={[styles.BottomButton, BottomBtn]}>
+          <SvgFromXml xml={Icons.ReviewUserIcon} />
+          <Text
+            style={[
+              styles.buttonText,
+              {color: theme.colors.White, marginLeft: 3},
+              TextStyles,
+            ]}>
+            1129
+          </Text>
         </View>
       </View>
       <TouchableOpacity style={styles.svgContainer}>
@@ -28,13 +46,14 @@ const CustomCard = ({ title, imageSource, onpressCard }) => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: 184,
+    width: 160,
     height: 235,
     borderRadius: 10,
     overflow: 'hidden',
     position: 'relative',
     marginBottom: 12,
-    marginRight: 12
+  
+
   },
   cardImage: {
     width: '100%',
@@ -60,8 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     width: 75,
     alignItems: 'center',
-    justifyContent: 'center'
-   
+    justifyContent: 'center',
   },
   BottomButton: {
     backgroundColor: theme.colors.Black,
@@ -73,7 +91,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-   
   },
   buttonText: {
     color: theme.colors.Black,

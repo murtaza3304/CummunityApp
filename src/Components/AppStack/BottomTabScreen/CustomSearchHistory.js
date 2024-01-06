@@ -4,16 +4,17 @@ import theme from '../../../Assets/Themes/theme';
 import {SvgFromXml} from 'react-native-svg';
 import Icons from '../../../Assets/Icons';
 
-const CustomSearchHistory = ({ImageSource, Heading, Location}) => {
+const CustomSearchHistory = ({ImageSource, Heading, Location, TouchableOpacityStyle, ViewBox, SvgImage, TextStyles, SvgXmlIcons}) => {
   return (
     <View style={styles.SearchHistoryContainer}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <Image source={ImageSource} style={styles.Image} />
-        <View style={styles.ViewBorder}>
+        <View style={[styles.ViewBorder, ViewBox]}>
           <Text style={styles.Heading}>{Heading}</Text>
-          <TouchableOpacity style={styles.TouchableOpacity}>
-            <SvgFromXml xml={Icons.LocationIcon} />
-            <Text style={styles.Paragraph}>{Location}</Text>
+          <TouchableOpacity style={[styles.TouchableOpacity, TouchableOpacityStyle]}>
+            <SvgFromXml xml={[Icons.LocationIcon, SvgXmlIcons]} style={SvgImage}/>
+
+            <Text style={[styles.Paragraph, TextStyles]}>{Location}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   },
   TouchableOpacity: {
     flexDirection: 'row',
-    marginLeft: 18
+    marginLeft: 18,
   },
   ViewBorder: {
     borderColor: theme.colors.BorderInactiveColor,

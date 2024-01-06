@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import React from 'react';
 import BackArrowBtn from '../../../CustomComponent/BackArrowBtn';
 import theme from '../../../../Assets/Themes/theme';
@@ -19,6 +19,7 @@ const CompleteProfile = () => {
 
   return (
     <View style={styles.Container}>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View>
         <BackArrowBtn onPressBtn={BackBtn} />
       </View>
@@ -49,20 +50,36 @@ const CompleteProfile = () => {
       </View>
       <View>
         <InputField
-          label="Identity Prof"
-          placeholder="upload here"
-          placeholderTextColor='grey'
+          label="Adhar Card"
+          placeholder="Front Side"
+          placeholderTextColor="grey"
           xml={
             <TouchableOpacity>
               <SvgFromXml xml={Icons.UploadProfilePic} />
             </TouchableOpacity>
           }
         />
-        <InputField placeholderTextColor='grey' keyboardType='numeric' label="Phone Number" placeholder="032764762764" />
+        <InputField
+          label="Adhar Card"
+          placeholder="Back Side"
+          placeholderTextColor="grey"
+          xml={
+            <TouchableOpacity>
+              <SvgFromXml xml={Icons.UploadProfilePic} />
+            </TouchableOpacity>
+          }
+        />
+        <InputField
+          placeholderTextColor="grey"
+          keyboardType="numeric"
+          label="Phone Number"
+          placeholder="032764762764"
+        />
       </View>
-      <View style={{marginTop: 60}}>
-        <Button title="Next" onPress={Next}/>
+      <View style={{marginTop: 20, marginBottom: 30}}>
+        <Button title="Next" onPress={Next} />
       </View>
+      </ScrollView>
     </View>
   );
 };
@@ -72,6 +89,7 @@ export default CompleteProfile;
 const styles = StyleSheet.create({
   Container: {
     paddingHorizontal: 20,
+    marginBottom: 5
   },
   Paragraph: {
     color: theme.colors.ParagraphColor,

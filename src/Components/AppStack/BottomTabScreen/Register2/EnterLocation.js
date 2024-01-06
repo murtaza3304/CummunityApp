@@ -9,8 +9,6 @@ import {
 import React from 'react';
 import BackArrowBtn from '../../../CustomComponent/BackArrowBtn';
 import theme from '../../../../Assets/Themes/theme';
-import {SvgFromXml} from 'react-native-svg';
-import Icons from '../../../../Assets/Icons';
 import InputField from '../../../CustomComponent/InputField';
 import Button from '../../../CustomComponent/Button';
 import {useNavigation} from '@react-navigation/native';
@@ -18,9 +16,9 @@ import {useNavigation} from '@react-navigation/native';
 const EnterLocation = () => {
   const navigation = useNavigation();
   const backBtn = () => {
-    navigation.navigate('WhatLocation');
+    navigation.navigate('BasicDetails');
   };
-  const Next = () => {
+  const toggleNextScreen = () => {
     navigation.navigate('CompleteProfile');
   };
 
@@ -52,67 +50,82 @@ const EnterLocation = () => {
           <View style={styles.line}></View>
           <View style={styles.circle}></View>
         </View>
-        <View style={{marginTop: 15}}>
-          <TouchableOpacity style={styles.SearchIcon}>
-            <SvgFromXml xml={Icons.SearchIcon} style={{marginLeft: 15}} />
-            <TextInput
-              placeholder="Find people, Business, etc"
-              placeholderTextColor="grey"
-              style={styles.PlaceHolder}
-            />
-          </TouchableOpacity>
+        {/* Remain */}
+        <View style={{width: '100%', height: 40, alignItems: 'center', justifyContent: 'center', marginTop: 10}}>
+          <Text style={[styles.Heading, {fontSize: 16,borderColor: theme.colors.Black, borderBottomWidth: 2}]}>Current Address</Text>
         </View>
-        <View style={styles.MyLocation}>
-          <TouchableOpacity style={{marginTop: 6}}>
-            <SvgFromXml xml={Icons.MyLocationIcon} />
-          </TouchableOpacity>
-          <Text style={[styles.Heading, {fontSize: 17, marginLeft: 7}]}>
-            Use My Location
-          </Text>
-        </View>
-        <View
-          style={{
-            width: '100%',
-            borderWidth: 1,
-            borderColor: theme.colors.BorderInactiveColor,
-            marginTop: 15,
-          }}></View>
-        <View style={{marginTop: 15}}>
-          <TouchableOpacity style={styles.LocationStyle}>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}>
-              <SvgFromXml
-                xml={Icons.MyLocationIcon2}
-                style={{marginLeft: 15}}
-              />
-              <Text style={{color: theme.colors.ParagraphColor, marginLeft: 7}}>
-                Rajkot India
-              </Text>
-            </View>
-
-            <Text style={{color: theme.colors.Grey, marginLeft: 20}}>
-              1254 platina 304
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View>
+        <View >
           <InputField
-            label="Native Village"
+            label="Address"
             placeholder="Type here"
             placeholderTextColor="grey"
           />
           <InputField
-            label="Current City / Village"
+            label="Country"
             placeholder="Type here"
             placeholderTextColor="grey"
           />
+          <InputField
+            label=" City "
+            placeholder="Type here"
+            placeholderTextColor="grey"
+          />
+          <InputField
+            label="State"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+          />
+          <InputField
+            label="Village"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+          />
+          <InputField
+            label="pincode"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+            keyboardType='numeric'
+          />
         </View>
-        <View style={{marginTop: 50}}>
-          <Button title="Next" onPress={Next} />
+        
+         <View style={{width: '100%', height: 40, alignItems: 'center', justifyContent: 'center', marginTop: 10}}>
+          <Text style={[styles.Heading, {fontSize: 16, borderColor: theme.colors.Black, borderBottomWidth: 2}]}>Native Address</Text>
+        </View>
+        <View >
+          <InputField
+            label="Address"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+          />
+          <InputField
+            label="Country"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+          />
+          <InputField
+            label=" City "
+            placeholder="Type here"
+            placeholderTextColor="grey"
+          />
+          <InputField
+            label="State"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+          />
+          <InputField
+            label="Village"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+          />
+          <InputField
+            label="pincode"
+            placeholder="Type here"
+            placeholderTextColor="grey"
+            keyboardType='numeric'
+          />
+        </View>
+        <View style={{marginVertical: 18}}>
+        <Button title='Next' TextStyle={{fontFamily: theme.fonts.PlusJakartaSansSamiBold}} onPress={()=>toggleNextScreen()}/>
         </View>
       </ScrollView>
     </View>

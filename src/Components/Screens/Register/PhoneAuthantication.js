@@ -10,14 +10,12 @@ const PhoneAuthantication = ({navigation}) => {
   
   const [otpError, setOtpError] = useState('');
 
-  const handleLogin = () => {
-    navigation.navigate('EmailAuthantication');
-    setOtpError('');
-  };
-
   const BackButton = () => {
     navigation.navigate('Register');
   };
+  const VerifyBtn = () => {
+    navigation.navigate('BasicDetails')
+  }
 
   let otpInput = useRef(null);
 
@@ -56,7 +54,7 @@ const PhoneAuthantication = ({navigation}) => {
         <Text style={{ color: theme.colors.ParagraphColor }}>
           Didn't Receive a Code?
         </Text>
-        <TouchableOpacity style={{ backgroundColor: 'white' }} onPress={handleLogin}>
+        <TouchableOpacity style={{ backgroundColor: 'white' }} onPress={()=>handleLogin()}>
           <Text style={styles.ResendSMS}>Resend SMS</Text>
         </TouchableOpacity>
       </View>
@@ -68,7 +66,7 @@ const PhoneAuthantication = ({navigation}) => {
       </View>
 
       <View style={{ marginTop: 20 }}>
-        <Button title="Verify Number" TextStyle={{ fontFamily: theme.fonts.PoppinsSemiBold }} onPress={()=>navigation.navigate('EmailAuthantication')} />
+        <Button title="Verify Number" TextStyle={{ fontFamily: theme.fonts.PoppinsSemiBold }} onPress={()=>VerifyBtn()} />
       </View>
 
       <View style={styles.MainView}>

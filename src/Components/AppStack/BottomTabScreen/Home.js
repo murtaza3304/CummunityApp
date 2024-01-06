@@ -108,6 +108,7 @@ const Home = () => {
       imageSource={item.imageSource}
       svgImage={item.svgImage}
       onpressCard={() => onpressCard()}
+      MainCardContainer={{marginRight:15}}
     />
   );
 
